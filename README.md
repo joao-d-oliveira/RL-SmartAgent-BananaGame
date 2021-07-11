@@ -31,6 +31,9 @@ Algorithm with DQN to train an Agent to navigate and collect bananas in a virtua
 | :exclamation:  Getting Started | The README has instructions for installing dependencies or downloading needed files. |
 | :exclamation:  Instructions | The README describes how to run the code in the repository, to train the agent. For additional resources on creating READMEs or using Markdown, see here and here. | 
 
+<img src="https://video.udacity-data.com/topher/2018/June/5b1ab750_screen-shot-2018-06-08-at-1.04.47-pm/screen-shot-2018-06-08-at-1.04.47-pm.png" width="200">
+
+
 #### Report
 
 | Criteria       		|     Meets Specifications	        			            | 
