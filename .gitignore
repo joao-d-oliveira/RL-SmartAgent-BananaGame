@@ -1,3 +1,5 @@
 .ipynb_checkpoints
 unity-environment.log
 .idea
+.*pkl
+__pycache__
