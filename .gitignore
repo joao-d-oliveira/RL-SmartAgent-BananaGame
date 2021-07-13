@@ -3,3 +3,6 @@ unity-environment.log
 .idea
 .*pkl
 __pycache__
+Banana.app
+Banana_Linux
+Banana_Linux_NoVis
