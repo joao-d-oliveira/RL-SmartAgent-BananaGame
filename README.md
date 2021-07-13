@@ -15,12 +15,9 @@ Algorithm with DQN to train an Agent to navigate and collect bananas in a virtua
 
 | Criteria       		|     Meets Specifications	        			            | 
 |:---------------------|:---------------------------------------------------------| 
-| :exclamation: Training Code  |  The repository (or zip file) includes functional, well-documented, and organized code for training the agent. |
-| :exclamation: Framework  |  The code is written in PyTorch and Python 3. |
-| :exclamation: Saved Model Weights  |  The submission includes the saved model weights of the successful agent. |
-
-#### Training Code
-
+| :white_check_mark: Training Code  |  The repository (or zip file) includes functional, well-documented, and organized code for training the agent. |
+| :white_check_mark: Framework  |  The code is written in PyTorch and Python 3. |
+| :white_check_mark: Saved Model Weights  |  The submission includes the saved model weights of the successful agent. |
 
 #### README
 
@@ -45,7 +42,7 @@ Algorithm with DQN to train an Agent to navigate and collect bananas in a virtua
 
 #### Bonus :boom:
 * :exclamation: Include a GIF and/or link to a YouTube video of your trained agent!
-* :exclamation: Solve the environment in fewer than 1800 episodes!
+* :white_check_mark: Solve the environment in fewer than 1800 episodes!
 * :exclamation: Write a blog post explaining the project and your implementation!
 * :exclamation: Implement a [double DQN](https://arxiv.org/abs/1509.06461), a [dueling DQN](https://arxiv.org/abs/1511.06581), and/or [prioritized experience replay](https://arxiv.org/abs/1511.05952)!
 * :exclamation: For an extra challenge **after passing this project**, try to train an agent from raw pixels! Check out `(Optional) Challenge: Learning from Pixels` in the classroom for more details.
