@@ -1,13 +1,14 @@
-[image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
+[image1]: https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/generated_run.gif?raw=true "Trained Agent"
 
 # AI Agent :space_invader: to navigate in a Banana :banana: world :globe_with_meridians: [**Report**]
 
 ------
+![Trained Agent with DQN][image1]
 
 ## Introduction
 
 This is the 
-
+fs
 ## Methodology
 
 Algorithm with DQN to train an Agent to navigate and collect bananas in a virtual World.
@@ -40,21 +41,21 @@ Algorithm with DQN to train an Agent to navigate and collect bananas in a virtua
 | Criteria       		|     Meets Specifications	        			            | 
 |:---------------------|:---------------------------------------------------------| 
 | :white_check_mark: `README.md`  | The GitHub (or zip file) submission includes a `README.md` file in the root of the repository. |
-| :exclamation:  Project Details  | The README describes the the project environment details (i.e., the state and action spaces, and when the environment is considered solved). |
-| :exclamation:  Getting Started | The README has instructions for installing dependencies or downloading needed files. |
-| :exclamation:  Instructions | The README describes how to run the code in the repository, to train the agent. For additional resources on creating READMEs or using Markdown, see here and here. |
+| :white_check_mark:  Project Details  | The README describes the the project environment details (i.e., the state and action spaces, and when the environment is considered solved). |
+| :white_check_mark:  Getting Started | The README has instructions for installing dependencies or downloading needed files. |
+| :white_check_mark:  Instructions | The README describes how to run the code in the repository, to train the agent. For additional resources on creating READMEs or using Markdown, see here and here. |
 
 #### Report
 
 | Criteria       		|     Meets Specifications	        			            | 
 |:---------------------|:---------------------------------------------------------| 
-| :exclamation: Report  | The submission includes a file in the root of the GitHub repository or zip file (one of `Report.md`, `Report.ipynb`, or `Report.pdf`) that provides a description of the implementation. |
+| :white_check_mark: Report  | The submission includes a file in the root of the GitHub repository or zip file (one of `Report.md`, `Report.ipynb`, or `Report.pdf`) that provides a description of the implementation. |
 | :exclamation:  Learning Algorithm  | The report clearly describes the learning algorithm, along with the chosen hyperparameters. It also describes the model architectures for any neural networks. |
 | :exclamation:  Plot of Rewards  | A plot of rewards per episode is included to illustrate that the agent is able to receive an average reward (over 100 episodes) of at least +13. The submission reports the number of episodes needed to solve the environment. |
 | :exclamation:  Ideas for Future Work  | The submission has concrete future ideas for improving the agent's performance. |
 
 #### Bonus :boom:
-* :exclamation: Include a GIF and/or link to a YouTube video of your trained agent!
+* :white_check_mark: Include a GIF and/or link to a YouTube video of your trained agent!
 * :white_check_mark: Solve the environment in fewer than 1800 episodes!
 * :exclamation: Write a blog post explaining the project and your implementation!
 * :exclamation: Implement a [double DQN](https://arxiv.org/abs/1509.06461), a [dueling DQN](https://arxiv.org/abs/1511.06581), and/or [prioritized experience replay](https://arxiv.org/abs/1511.05952)!
