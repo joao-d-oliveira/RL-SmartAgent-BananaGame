@@ -1,7 +1,7 @@
 .ipynb_checkpoints
 unity-environment.log
 .idea
-.*pkl
+*.pkl
 __pycache__
 Banana.app
 Banana_Linux
