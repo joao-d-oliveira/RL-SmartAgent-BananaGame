@@ -1,72 +1,30 @@
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
 # AI Agent :space_invader: to navigate in a Banana :banana: world :globe_with_meridians:
-
+![Trained Agent][image1]
 ## Introduction
 
-Algorithm with DQN to train an Agent to navigate and collect bananas in a virtual World.
+This project aims to explore the power of teaching an agent through Reinforced Learning (RL) to navigate on a Banana World.
 
------
+The agents uses a DQN Network with a Deep Q-Learning Aldorithm to learn how to navigate efficiently in the virtual world collecting bananas.
 
-## Evaluation
-[Rubric](https://review.udacity.com/#!/rubrics/1889/view)
+### Options for different Networks
 
-#### Training Code
-
-| Criteria       		|     Meets Specifications	        			            | 
-|:---------------------|:---------------------------------------------------------| 
-| :white_check_mark: Training Code  |  The repository (or zip file) includes functional, well-documented, and organized code for training the agent. |
-| :white_check_mark: Framework  |  The code is written in PyTorch and Python 3. |
-| :white_check_mark: Saved Model Weights  |  The submission includes the saved model weights of the successful agent. |
-
-#### README
-
-| Criteria       		|     Meets Specifications	        			            | 
-|:---------------------|:---------------------------------------------------------| 
-| :exclamation:  `README.md`  | The GitHub (or zip file) submission includes a `README.md` file in the root of the repository. |
-| :exclamation:  Project Details  | The README describes the the project environment details (i.e., the state and action spaces, and when the environment is considered solved). |
-| :exclamation:  Getting Started | The README has instructions for installing dependencies or downloading needed files. |
-| :exclamation:  Instructions | The README describes how to run the code in the repository, to train the agent. For additional resources on creating READMEs or using Markdown, see here and here. | 
-
-<img src="https://video.udacity-data.com/topher/2018/June/5b1ab750_screen-shot-2018-06-08-at-1.04.47-pm/screen-shot-2018-06-08-at-1.04.47-pm.png" width="200">
-
-
-#### Report
-
-| Criteria       		|     Meets Specifications	        			            | 
-|:---------------------|:---------------------------------------------------------| 
-| :exclamation: Report  | The submission includes a file in the root of the GitHub repository or zip file (one of `Report.md`, `Report.ipynb`, or `Report.pdf`) that provides a description of the implementation. |
-| :exclamation:  Learning Algorithm  | The report clearly describes the learning algorithm, along with the chosen hyperparameters. It also describes the model architectures for any neural networks. |
-| :exclamation:  Plot of Rewards  | A plot of rewards per episode is included to illustrate that the agent is able to receive an average reward (over 100 episodes) of at least +13. The submission reports the number of episodes needed to solve the environment. |
-| :exclamation:  Ideas for Future Work  | The submission has concrete future ideas for improving the agent's performance. |
-
-#### Bonus :boom:
-* :exclamation: Include a GIF and/or link to a YouTube video of your trained agent!
-* :white_check_mark: Solve the environment in fewer than 1800 episodes!
-* :exclamation: Write a blog post explaining the project and your implementation!
-* :exclamation: Implement a [double DQN](https://arxiv.org/abs/1509.06461), a [dueling DQN](https://arxiv.org/abs/1511.06581), and/or [prioritized experience replay](https://arxiv.org/abs/1511.05952)!
-* :exclamation: For an extra challenge **after passing this project**, try to train an agent from raw pixels! Check out `(Optional) Challenge: Learning from Pixels` in the classroom for more details.
+The implementation contains a `simple DQN` (that should solve the game within the first ±260 episodes), 
+then there's also a `complex layer DQN` (that should solve the game within the first ±260 episodes) 
+and finally you can choose to use a `double DQN` as well (that should solve the game within the first ±260 episodes).
 
 ------
+## Getting Started
 
-## Rules
-
-![Trained Agent][image1]
-
-A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
-
-The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.  Given this information, the agent has to learn how to best select actions.  Four discrete actions are available, corresponding to:
-- **`0`** - move forward.
-- **`1`** - move backward.
-- **`2`** - turn left.
-- **`3`** - turn right.
-
-The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
-
-
-## Instalation
-
-1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
+1. You need to have installed the requirements (specially mlagents==0.4.0).
+   Due to deprecated libraries, I've included a [python folder](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/tree/main/python) which will help
+   with installation of the system.
+      - Clone the repository: `git clone https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame.git`
+      - Go to python folder: `cd RL-SmartAgent-BananaGame/python`
+      - Compile and install needed libraries `pip install .`
+2. Download the environment from one of the links below
+   Download only the environment that matches your operating system:
     - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
     - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
     - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
@@ -74,22 +32,58 @@ The task is episodic, and in order to solve the environment, your agent must get
     
     (_For Windows users_) Check out [this link](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
 
-    (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
+    (_For AWS or Collab_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
 
-2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
+3. Place the downloaded file for your environment in the DRLND GitHub repository, in the ``RL-SmartAgent-BananaGame`` folder, and unzip (or decompress) the file. 
 
-### (Optional) Challenge: Learning from Pixels
+## Project Details
 
-After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  A more challenging task would be to learn directly from pixels!
+### Rules of The Game
 
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment, where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  (**Note**: Udacity students should not submit a project with this new environment.)
+A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
 
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
+#### State Space
+The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
+Given this information, the agent has to learn how to best select actions. 
 
-Then, place the file in the `<root_folder>` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
+#### Action Space
+Four discrete actions are available, corresponding to:
+- **`0`** - move forward.
+- **`1`** - move backward.
+- **`2`** - turn left.
+- **`3`** - turn right.
 
+#### Conditions to consider solved
+
+The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
+
+## Instructions
+
+### Files
+
+#### Code
+1. [agent.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py) - Agent class containing Q-Learning algorithm
+1. [model.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py) - Simple DQN model class setup 
+1. [Navigation.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation.ipynb) - Jupyter Notebook for running experiment, with simple navigation (getting state space through vector)
+1. [Navigation_Pixels.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation_Pixels.ipynb) - Jupyter Notebook for running experiment, with pixel navigation (getting state space through pixeis)
+
+#### Documentation
+1. [README.md](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/README.md) - This file
+1. [Report.md](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md) - Detailed Report on the project
+
+### Running Normal navigation with state space of `37` dimensions
+After fulling the requirements on section [Getting Started](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame#getting-started) and at 
+[requirements.txt](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/requirements.txt) 
+0. Load Jupyter notebook [Navigation.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation.ipynb)
+1. Adapt dictionary `SETUP = {` with the desired paramenters
+2. Load the environment. Running sections: 
+   > 1 Initial Setup <br>
+   > 2.1 Start the Environment <br>
+   > 2.2. Helper Functions
+3. If you want to find other HyperParameters, feel free to run section below and adapt SETUP dictionary accordingly
+   > 2.3 Find HyperParameters (Optuna)
+4. After your pleased with the parameters setup, run section below and check the ploting of results
+   > 2.4 Running full Run with Hyper Parameters 
+
+### Pixel navigation through pixels
 
