@@ -14,7 +14,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 class Agent():
     """Interacts with and learns from the environment."""
 
-    def __init__(self, state_size, action_size, seed, BUFFER_SIZE = int(1e5), BATCH_SIZE = 64, GAMMA = 0.99, TAU = 1e-3, LR = 5e-4, UPDATE_EVERY = 4, fc1_units=64, fc2_units=64, double_dqn=False, dueling_dqn=False, prioritized_experience_replay=False, max_steps_learning=50000):
+    def __init__(self, state_size, action_size, seed, BUFFER_SIZE = int(1e5), BATCH_SIZE = 64, GAMMA = 0.99, TAU = 1e-3, LR = 5e-4, UPDATE_EVERY = 4, fc1_units=64, fc2_units=64, double_dqn=False, dueling_dqn=False, prioritized_experience_replay=False):
         """Initialize an Agent object.
 
         Params
@@ -22,18 +22,17 @@ class Agent():
             state_size (int): dimension of each state
             action_size (int): dimension of each action
             seed (int): random seed
-            BUFFER_SIZE (int): buffer size for Replay bufffer
-            BATCH_SIZE (int): batch size for Replay bufffer
+            BUFFER_SIZE (int): buffer size for Replay buffer
+            BATCH_SIZE (int): batch size for Replay buffer
             GAMMA (float): Gamma value for discount factor
             TAU (float): interpolation parameter
             LR (float): learning rate
             UPDATE_EVERY (int): number of times to update table
             fc1_units (int): hidden size of first hidden layer
-            fc2_units (int): hidden size of secondhidden layer
+            fc2_units (int): hidden size of second hidden layer
             double_dqn (bool): whether to use double DQN or not
             dueling_dqn (bool): whether to use dueling or not
             prioritized_experience_replay (bool): whether to use prioritized experience replay or not
-            max_steps_learning (int): number of steps that after that is achieved sets priority to 1
         """
 
         # SETUP params
@@ -51,7 +50,6 @@ class Agent():
         self.seed = random.seed(seed)
 
         self.PER = prioritized_experience_replay
-        self.max_steps = max_steps_learning
 
         # Q-Network
         self.qnetwork_local = QNetwork(state_size, action_size, seed, dueling_dqn, fc1_units=fc1_units, fc2_units=fc2_units).to(device)
@@ -62,7 +60,6 @@ class Agent():
         self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed, prioritized_experience_replay=prioritized_experience_replay)
         # Initialize time step (for updating every UPDATE_EVERY steps)
         self.t_step = 0
-        self.learn_step = 0
 
     def step(self, state, action, reward, next_state, done):
         # Save experience in replay memory
@@ -103,7 +100,6 @@ class Agent():
         ======
             experiences (Tuple[torch.Tensor]): tuple of (s, a, r, s', done) tuples
             gamma (float): discount factor
-            beta (float): beta to calculate weights of priorities for Priortized Experience Replay
         """
 
         if self.PER: states, actions, rewards, next_states, dones, idx, weights = experiences
@@ -174,6 +170,8 @@ class ReplayBuffer:
             buffer_size (int): maximum size of buffer
             batch_size (int): size of each training batch
             seed (int): random seed
+            prioritized_experience_replay(bool): whether to have Prioritized Experience Replay (PER). or not
+            alpha: value to use in (PER) calculation of probabilities
         """
         self.action_size = action_size
         self.memory = deque(maxlen=buffer_size)
