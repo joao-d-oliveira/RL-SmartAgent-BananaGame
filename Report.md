@@ -180,7 +180,7 @@ Ideas for the future:
   (eps, the world itself, ...) one can not be entirely sure that the model didn't just "got lucky".
   In order to improve that and take away some uncertainty, one option would be to run it much more times and evaluate better the aspects of each variable tweak.
 * One could try to find take a look at implementing other advance techniques which weren't discussed here. (such as: ...)
-* 
+
 
 ------
 
@@ -211,7 +211,7 @@ Ideas for the future:
 | ✅ Report  | The submission includes a file in the root of the GitHub repository or zip file (one of `Report.md`, `Report.ipynb`, or `Report.pdf`) that provides a description of the implementation. |
 | ✅ Learning Algorithm  | The report clearly describes the learning algorithm, along with the chosen hyperparameters. It also describes the model architectures for any neural networks. |
 | ✅  Plot of Rewards  | A plot of rewards per episode is included to illustrate that the agent is able to receive an average reward (over 100 episodes) of at least +13. The submission reports the number of episodes needed to solve the environment. |
-| ❗  Ideas for Future Work  | The submission has concrete future ideas for improving the agent's performance. |
+| ✅❗  Ideas for Future Work  | The submission has concrete future ideas for improving the agent's performance. |
 
 #### Bonus :boom:
 * ✅ Include a GIF and/or link to a YouTube video of your trained agent!
@@ -233,5 +233,3 @@ You need only select the environment that matches your operating system:
 - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
 
 Then, place the file in the `<root_folder>` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
-
-------
