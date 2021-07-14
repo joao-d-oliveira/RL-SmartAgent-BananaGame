@@ -16,6 +16,9 @@ class QNetwork(nn.Module):
             state_size (int): Dimension of each state
             action_size (int): Dimension of each action
             seed (int): Random seed
+            dueling_dqn (bool): Turn on or off Dueling DQN
+            fc1_units (int): 1st hidden layer size
+            fc2_units (int): 2nd hidden layer size
         """
         super(QNetwork, self).__init__()
         self.seed = torch.manual_seed(seed)
