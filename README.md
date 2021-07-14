@@ -1,18 +1,18 @@
 [image1]: https://user-images.githubusercontent.com/10624937/42135619-d90f2f28-7d12-11e8-8823-82b970a54d7e.gif "Trained Agent"
 
-# AI Agent :space_invader: to navigate in a Banana :banana: world :globe_with_meridians:
+# AI Agent 🤖 to navigate in a Banana 🍌 world 🌐
 ![Trained Agent][image1]
+
 ## Introduction
 
 This project aims to explore the power of teaching an agent through Reinforced Learning (RL) to navigate on a Banana World.
 
 The agents uses a DQN Network with a Deep Q-Learning Aldorithm to learn how to navigate efficiently in the virtual world collecting bananas.
 
-### Options for different Networks
+## Options for different Networks
 
-The implementation contains a `simple DQN` (that should solve the game within the first ±260 episodes), 
-then there's also a `complex layer DQN` (that should solve the game within the first ±260 episodes) 
-and finally you can choose to use a `double DQN` as well (that should solve the game within the first ±260 episodes).
+The implementation options for: `Vanilla DQN`, `Double DQN`, `Dueling DQN` and `Priorized Replay Experience DQN`.<br>
+Please check under [Instructions](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame#instructions) on how to activate each of this options
 
 ------
 ## Getting Started
@@ -42,18 +42,18 @@ and finally you can choose to use a `double DQN` as well (that should solve the 
 
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana.  Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.  
 
-#### State Space
+### State Space
 The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
 Given this information, the agent has to learn how to best select actions. 
 
-#### Action Space
+### Action Space
 Four discrete actions are available, corresponding to:
 - **`0`** - move forward.
 - **`1`** - move backward.
 - **`2`** - turn left.
 - **`3`** - turn right.
 
-#### Conditions to consider solved
+### Conditions to consider solved
 
 The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
 
@@ -62,8 +62,8 @@ The task is episodic, and in order to solve the environment, your agent must get
 ### Files
 
 #### Code
-1. [agent.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py) - Agent class containing Q-Learning algorithm
-1. [model.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py) - Simple DQN model class setup 
+1. [agent.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py) - Agent class containing Q-Learning algorithm and all supoprt for `Vanilla DQN`, `Double DQN`, `Dueling DQN` and `Priorized Replay Experience DQN`.
+1. [model.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py) - DQN model class setup (containing configuration for `Dueling DQN`) 
 1. [Navigation.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation.ipynb) - Jupyter Notebook for running experiment, with simple navigation (getting state space through vector)
 1. [Navigation_Pixels.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation_Pixels.ipynb) - Jupyter Notebook for running experiment, with pixel navigation (getting state space through pixeis)
 
@@ -72,6 +72,31 @@ The task is episodic, and in order to solve the environment, your agent must get
 1. [Report.md](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md) - Detailed Report on the project
 
 ### Running Normal navigation with state space of `37` dimensions
+
+#### Structure of Notebook
+
+The structure of the notebook follows the following:
+> 1. Initial Setup: _(setup for parameters of experience, check [report](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md) for more details)_ <br>
+> 2. Navigation <br>
+> 2.1 Start the Environment: _(load environment for the game)_<br>
+> 2.2 HelperFunctions: _(functions to help the experience, such as Optuna, DQNsearch, ...)_<br>
+> 2.3 Vanilla DQN: _(section to train an agent with a Vanilla DQN)_<br>
+> 2.4 Double DQN: _(section to train an agent with a Double DQN)_<br>
+> 2.5 Dueling DQN: _(section to train an agent with a Dueling DQN)_<br>
+> 2.6 Prioritized Experience Replay (PER) DQN: _(section to train an agent with a PER DQN)_<br>
+
+Each of the sections: [`2.3 Vanilla DQN`, `2.4 Double DQN`, `2.5 Dueling DQN`, `2.6 Prioritized Replay DQN`]
+Have subsessions:
+> 2.x.1 Find HyperParameters (Optuna) <br>
+> 2.x.1.1 Ploting Optuna Results <br>
+> 2.x.2 Run (network) DQN <br>
+> 2.x.3 Plot Scores <br>
+
+Each section relevant to the respective DQN. <br>
+You can choose whether to use the regular parameters, or try to find them through Optuna
+
+#### Running
+
 After fulling the requirements on section [Getting Started](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame#getting-started) and at 
 [requirements.txt](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/requirements.txt) 
 0. Load Jupyter notebook [Navigation.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation.ipynb)
@@ -80,10 +105,8 @@ After fulling the requirements on section [Getting Started](https://github.com/j
    > 1 Initial Setup <br>
    > 2.1 Start the Environment <br>
    > 2.2. Helper Functions
-3. If you want to find other HyperParameters, feel free to run section below and adapt SETUP dictionary accordingly
-   > 2.3 Find HyperParameters (Optuna)
-4. After your pleased with the parameters setup, run section below and check the ploting of results
-   > 2.4 Running full Run with Hyper Parameters 
+3. Then go the section of the Network you want to run [`2.3 Vanilla DQN`, `2.4 Double DQN`, `2.5 Dueling DQN`, `2.6 Prioritized Replay DQN`]
+   There you will be able to either run Optuna to find the theoretically best parameters, or run the model with the base paramenters.
 
 ### Pixel navigation through pixels
 
