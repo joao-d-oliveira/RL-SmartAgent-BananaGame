@@ -2,14 +2,14 @@
 [optuna1]: https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/optuna_detail_runs.png?raw=true "Optuna Detail Run"
 [optuna2]: https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/optuna_parameters_coordinates.png?raw=true "Optuna Parameters Coordinates"
 [optuna3]: https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/optuna_parameters_importance.png?raw=true "Optuna Parameters Importance"
-[scores]: https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/image_run_plotted.png?raw=true "Scores plot - Run "
+[rolling]: https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_allrolling.png?raw=true "All Rolling Averages"
 
 # AI Agent 🤖 to navigate in a Banana 🍌 world 🌐 [**Report**]
 
 ------
-Image of player being trained on Vanilla DQN:
-![Trained Agent with DQN][image1]
 
+![Trained Agent with DQN][image1]<br>
+Image of player being trained on Vanilla DQN
 ## Introduction
 
 This project aimed to get a sense and discover the potential of DQNs.<br>
@@ -40,7 +40,7 @@ Having successfully passed these, I decided to try to take a chance at solving t
 
 The learning is done by the [Agent](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py) class,
 together with the [Model](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py) class which represents the local and target Network.
-In order to ease the training, the agent uses a [ReplayBuffer](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py#L99) class.
+In order to ease the training, the agent uses a [ReplayBuffer](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py#L161) class.
 
 ### Agent Details
 
@@ -73,13 +73,12 @@ Params
 `def step(self, state, action, reward, next_state, done):`
 
 **Act Function** which takes a state and returns accordingly the action as per current policy  <br>
-
 `def act(self, state, eps=0.)`
 
-**Learn Function** which updates accordingly the networks (local and target)  
+**Learn Function** which updates accordingly the networks (local and target) <br>
 `def learn(self, experiences, gamma):`
 
-**Soft Update Function** performs a soft update to the model parameters
+**Soft Update Function** performs a soft update to the model parameters <br>
 `def soft_update(self, local_model, target_model, tau)`
 
 #### Agent Auxiliary variables
@@ -93,7 +92,7 @@ as well as **self.qnetwork_local** and **self.qnetwork_target** which is an obje
 The NeuralNetwork (defined at [model.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py)) is composed by 2 initial Linear Layers. (made them flexbile to receive the hidden sizes via parameter) <br>
 
 Then depending on whether it's selected a Dueling DNQ or not, the network contains
-a last Linear Layer for the Output (in case it's not Dueling) or 2 Linear Layers (A and V which will later be combined to get the output value) [more information]([Dueling DQN](https://arxiv.org/abs/1511.06581))   
+a last Linear Layer for the Output (in case it's not Dueling) or 2 Linear Layers (A and V which will later be combined to get the output value) [Dueling DQN](https://arxiv.org/abs/1511.06581))   
 
 ```
 self.fc1 = nn.Linear(state_size, fc1_units)
@@ -152,9 +151,9 @@ You can find them below, followed by their _search-space_ used by Optuna to find
 * `'FC2_UNITS': [32,64,128,256],`# Values for 1st Hidden Linear Layer
 * `'EPS_END': [1, 6],` # lower limit of EPS (used for greedy approach): **attention** this value is them modified to 1e-TAU, so the real range is between 1e-6, 1e-1
 * `'EPS_DECAY': [0.85, 1],` # value for which EPS (used for greedy approach) is multiplied accordingly to decrease until reaching the lower limit
-* `'USE_DOUBLE_DQN': False / True,` # whether to use a Double DQN network
-* `'USE_DUELING_DQN': False / True,` # whether to use a Dueling DQN network
-* `'USE_PRIORITIZED_EXP_REP':False / True,`# whether to use a Prioritized Experience Replay DQN network
+* `'USE_DOUBLE_DQN': True/False,` # whether to use a Double DQN network
+* `'USE_DUELING_DQN': True/False,` # whether to use a Dueling DQN network
+* `'USE_PRIORITIZED_EXP_REP': True/False,`# whether to use a Prioritized Experience Replay DQN network
 
 #### Images from HyperParameters
 Below are an example of the Hyper Parameters search from Optuna:
@@ -163,9 +162,41 @@ Below are an example of the Hyper Parameters search from Optuna:
 ![Optuna Parameters Importance][optuna3]
 
 ## Plot of Rewards
-Below are an example of how the agent behaves and collects scores after each episode:
-![Run of scores][scores]
-<br>(The number of episodes needed to solve the game, it's in Jupyter Notebook)
+
+Below you can find the diferent DQNs run by the agent. As well the different results of rolling window, first time to hit the target, ending average, ...
+
+I started with the baseline of the standard parameters setup in [SETUP](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation.ipynb#) dictionary in the begining of Jupyter Notebook.
+
+Then ran **Hyper Parameters for Vanilla DQN** using [Optuna](https://optuna.org) and ran with the found parameters.<br>
+**In order to better compare different networks** I ran with the **same parameters found above** (for Vanilla DQN) all other networks: `Double DQN`, `Dueling DQN` and `Priorized Replay Experience DQN`, `Double with PER DQN`, `Double, Dueling and PER DQN`.
+
+
+### Individual Results
+
+<table align="center">
+        <tr><td>
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_baseline_plot.png?raw=true" alt="Scores plot - Baseline Run" align="center" height="300" width="350" >
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_vanilla_plot.png?raw=true" alt="Scores plot - Vanilla Run" align="center" height="300" width="350" >
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_ddqn_plot.png?raw=true" alt="Scores plot - DDQN Run" align="center" height="300" width="350" >
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_dueling_plot.png?raw=true" alt="Scores plot - Dueling Run" align="center" height="300" width="350" >
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_per_plot.png?raw=true" alt="Scores plot - P.E.R. Run " align="center" height="300" width="350" > 
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_ddqn_per_plot.png?raw=true" alt="Scores plot - DDQN and P.E.R. Run " align="center" height="300" width="350" >
+<img src="https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/images/run_ddqn_dueling_per_plot.png?raw=true" alt="Scores plot - DDQN, Dueling and P.E.R. Run " align="center" height="300" width="350" >
+
+</table>
+        
+
+### Plotted rolling windows
+
+![Rolling Averages][Rolling]<br>
+
+## Conclusion
+
+As you can see from the [charts](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md#plot-of-rewards) all of the networks out-perform the Baseline (Vanilla DQN with the standard Parameters).
+
+However you can see that they don't necessarily outperform the more complex they become. <br>
+The intuition for this is that the more complex networks `Double DQN`, `Dueling DQN` and `Priorized Replay Experience DQN` could perform much better if other set of parameters were searched focusing on their respective networks.
+
 
 ## Ideas for the Future
 
@@ -179,7 +210,9 @@ Ideas for the future:
   Unfortunately as the enviroment has consideravel ammount of random aspects to it 
   (eps, the world itself, ...) one can not be entirely sure that the model didn't just "got lucky".
   In order to improve that and take away some uncertainty, one option would be to run it much more times and evaluate better the aspects of each variable tweak.
-* One could try to find take a look at implementing other advance techniques which weren't discussed here. (such as: ...)
+* As mentioned [above](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md#plot-of-rewards) the parameters used on the tweaked networks (`Double DQN`, `Dueling DQN`, ...) where found focusing on a `Vanilla DQN`, they should perform much better if they were searched based on each network.
+* Another thing that one could do is to try to play with the batch size from the buffer, and beta, so other parameters that weren't tweaked
+* One could try to find take a look at implementing other advance techniques which weren't discussed here. (such as: [Distributional DQN](https://arxiv.org/abs/1707.06887), [multi-step bootstrap targets](https://arxiv.org/abs/1602.01783), [Noisy DQN](https://arxiv.org/abs/1706.10295), ...)
 
 
 ------
@@ -211,7 +244,7 @@ Ideas for the future:
 | ✅ Report  | The submission includes a file in the root of the GitHub repository or zip file (one of `Report.md`, `Report.ipynb`, or `Report.pdf`) that provides a description of the implementation. |
 | ✅ Learning Algorithm  | The report clearly describes the learning algorithm, along with the chosen hyperparameters. It also describes the model architectures for any neural networks. |
 | ✅  Plot of Rewards  | A plot of rewards per episode is included to illustrate that the agent is able to receive an average reward (over 100 episodes) of at least +13. The submission reports the number of episodes needed to solve the environment. |
-| ✅❗  Ideas for Future Work  | The submission has concrete future ideas for improving the agent's performance. |
+| ✅  Ideas for Future Work  | The submission has concrete future ideas for improving the agent's performance. |
 
 #### Bonus :boom:
 * ✅ Include a GIF and/or link to a YouTube video of your trained agent!
