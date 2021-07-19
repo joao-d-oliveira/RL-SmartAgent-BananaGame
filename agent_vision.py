@@ -2,8 +2,7 @@ import numpy as np
 import random
 from collections import namedtuple, deque
 
-from PixelQNetwork import QNetwork_vision
-from model_vision_2 import QNetwork_vision2
+from model_vision import QNetwork_vision
 
 import torch
 import torch.nn.functional as F

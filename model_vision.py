@@ -36,11 +36,10 @@ class QNetwork_vision(nn.Module):
             nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, stride=3),
             nn.ReLU(),
             nn.Flatten(),
-            nn.Linear(512, 512),
+            nn.Linear(512, 256),
             nn.ReLU(),
-            nn.Linear(512, outputs),
+            nn.Linear(256, outputs),
         )
-
 
 
     def forward(self, x):
