@@ -25,9 +25,7 @@ class QNetwork_vision(nn.Module):
         c = 3 # channels
 
         self.online = nn.Sequential(
-            nn.Conv2d(in_channels=c, out_channels=32, kernel_size=1, stride=1),
-            nn.ReLU(),
-            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=3),
+            nn.Conv2d(in_channels=c, out_channels=64, kernel_size=1, stride=1),
             nn.ReLU(),
             nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, stride=3),
             nn.ReLU(),
@@ -35,7 +33,11 @@ class QNetwork_vision(nn.Module):
             nn.ReLU(),
             nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, stride=3),
             nn.ReLU(),
+            nn.Conv2d(in_channels=512, out_channels=1024, kernel_size=3, stride=3),
+            nn.ReLU(),
             nn.Flatten(),
+            nn.Linear(1024, 512),
+            nn.ReLU(),
             nn.Linear(512, 256),
             nn.ReLU(),
             nn.Linear(256, outputs),
@@ -43,4 +45,5 @@ class QNetwork_vision(nn.Module):
 
 
     def forward(self, x):
+        x = x.to(device)
         return self.online(x)
