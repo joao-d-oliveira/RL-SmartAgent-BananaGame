@@ -34,6 +34,14 @@ Please check under [Instructions](https://github.com/joao-d-oliveira/RL-SmartAge
 
     (_For AWS or Collab_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
 
+2.1 In case you prefer to test the Visual Environment (where the states are defined by the video instead of a vector that indicates the state).
+please Download instead bellow:
+- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
+- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
+- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
+- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
+
+
 3. Place the downloaded file for your environment in the DRLND GitHub repository, in the ``RL-SmartAgent-BananaGame`` folder, and unzip (or decompress) the file. 
 
 ## Project Details
@@ -44,7 +52,10 @@ A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is
 
 ### State Space
 The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around agent's forward direction.
-Given this information, the agent has to learn how to best select actions. 
+Given this information, the agent has to learn how to best select actions.
+
+The state space of the **"Visual"** environment is composed by the snapshot of the video of the game, meaning that is 
+an array composed by (84, 84, 3) which means, 84 of width and height and 3 channels (R.G.B.).
 
 ### Action Space
 Four discrete actions are available, corresponding to:
@@ -65,11 +76,19 @@ The task is episodic, and in order to solve the environment, your agent must get
 1. [agent.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py) - Agent class containing Q-Learning algorithm and all supoprt for `Vanilla DQN`, `Double DQN`, `Dueling DQN` and `Priorized Replay Experience DQN`.
 1. [model.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py) - DQN model class setup (containing configuration for `Dueling DQN`) 
 1. [Navigation.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation.ipynb) - Jupyter Notebook for running experiment, with simple navigation (getting state space through vector)
+---
+1. [agent_vision.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent_vision.py) - Agent class containing Q-Learning algorithm Visual environment
+1. [model_vision.py](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model_vision.py) - DQN model class setup for Visual environment 
 1. [Navigation_Pixels.ipynb](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Navigation_Pixels.ipynb) - Jupyter Notebook for running experiment, with pixel navigation (getting state space through pixeis)
 
 #### Documentation
 1. [README.md](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/README.md) - This file
 1. [Report.md](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md) - Detailed Report on the project
+
+#### Models
+All models are saved on the subfolder (models).
+For example, [checkpoint.pt](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/models/checkpoint.pt) is 
+a file which has been saved upon success of achieving the goal, and [model.pt](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/models/model.pt) is the end model after runing all episodes.
 
 ### Running Normal navigation with state space of `37` dimensions
 
@@ -80,12 +99,17 @@ The structure of the notebook follows the following:
 > 2. Navigation <br>
 > 2.1 Start the Environment: _(load environment for the game)_<br>
 > 2.2 HelperFunctions: _(functions to help the experience, such as Optuna, DQNsearch, ...)_<br>
-> 2.3 Vanilla DQN: _(section to train an agent with a Vanilla DQN)_<br>
-> 2.4 Double DQN: _(section to train an agent with a Double DQN)_<br>
-> 2.5 Dueling DQN: _(section to train an agent with a Dueling DQN)_<br>
-> 2.6 Prioritized Experience Replay (PER) DQN: _(section to train an agent with a PER DQN)_<br>
+> 2.3 Baseline DQN: _(section to train an agent with the standard parameters, without searching for hyper-parameters)_<br>
+> 2.4 Vanilla DQN: _(section to train an agent with a Vanilla DQN)_<br>
+> 2.5 Double DQN: _(section to train an agent with a Double DQN)_<br>
+> 2.6 Dueling DQN: _(section to train an agent with a Dueling DQN)_<br>
+> 2.7 Prioritized Experience Replay (PER) DQN: _(section to train an agent with a PER DQN)_<br>
+> 2.8 Double DQN with PER: _(section to train an agent with a PER and Double DQN at same time)_<br>
+> 2.9 Double with Dueling and PER DQN: _(section to train an agent with a PER and Double and dueling DQN)_<br>
+> 3.0 Plot all results: _(section where all the results from above sections are plotted to compare performance)_
 
-Each of the sections: [`2.3 Vanilla DQN`, `2.4 Double DQN`, `2.5 Dueling DQN`, `2.6 Prioritized Replay DQN`]
+Each of the sections: [`2.3 Baseline DQN`, `2.4 Vanilla DQN`, `2.5 Double DQN`, `2.6 Dueling DQN`, `2.7 Prioritized Replay DQN`, `2.8 Double DQN with PER`, `2.9 Double with Dueling and PER DQN`]
+
 Have subsessions:
 > 2.x.1 Find HyperParameters (Optuna) <br>
 > 2.x.1.1 Ploting Optuna Results <br>
@@ -105,8 +129,5 @@ After fulling the requirements on section [Getting Started](https://github.com/j
    > 1 Initial Setup <br>
    > 2.1 Start the Environment <br>
    > 2.2. Helper Functions
-3. Then go the section of the Network you want to run [`2.3 Vanilla DQN`, `2.4 Double DQN`, `2.5 Dueling DQN`, `2.6 Prioritized Replay DQN`]
+3. Then go the section of the Network you want to run [`2.3 Baseline DQN`, `2.4 Vanilla DQN`, `2.5 Double DQN`, `2.6 Dueling DQN`, `2.7 Prioritized Replay DQN`, `2.8 Double DQN with PER`, `2.9 Double with Dueling and PER DQN`]
    There you will be able to either run Optuna to find the theoretically best parameters, or run the model with the base paramenters.
-
-### Pixel navigation through pixels
-
