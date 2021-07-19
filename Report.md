@@ -34,7 +34,8 @@ After successfully running and passing the criteria, I moved into introducing **
 
 Once I had this I started developing the rest of the networks: `Double DQN`, `Dueling DQN` and `Priorized Replay Experience DQN` 
 
-Having successfully passed these, I decided to try to take a chance at solving the pixel version.
+Having successfully passed these, I decided to try to take a chance at solving the pixel version.<br>
+I managed to come up with a working DQN, unfortunately I couldn't test it properly as I try to explain in [ideas for the future scection](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/Report.md#ideas-for-the-future)
 
 ## Learning Algorithm
 
@@ -204,7 +205,17 @@ There is always room for improvement. <br>
 From the vast number of ideas, or options that one can do to improve the performance of the agent, 
 will try to least some of them to give some food-for-tought.
 
+<span style="color:red">Problems faced:</span>
+* I had considerable difficulties and spent hours/days in trying to 
+  run the VisualBanana (pixel version) in a VirtualMachine (as Colab, Kaggle, Udemy Workspace). Unfortunately 
+  one runs into several problems of getting the _"NoVis" version_ to work and retrieving pixels from the environment.<br>
+  This lead to have a significant limitation of testing different NN setups, given I could only work with my local machine, 
+  without the power of a GPU (estimated time of training 37 Hours per NN).<br>
+  Believe partly this is due to an old mlagents==0.4.0 and incompatibilities with VMs.
+
+
 Ideas for the future:
+  
 * Make a more complex Neural Network than the one presented here
 * Increase the amount of time for running Optuna HyperParameters search. 
   Unfortunately as the enviroment has consideravel ammount of random aspects to it 
@@ -250,7 +261,7 @@ Ideas for the future:
 * ✅ Include a GIF and/or link to a YouTube video of your trained agent!
 * ✅ Solve the environment in fewer than 1800 episodes!
 * ✅✅✅ Implement a [double DQN](https://arxiv.org/abs/1509.06461), a [dueling DQN](https://arxiv.org/abs/1511.06581), and/or [prioritized experience replay](https://arxiv.org/abs/1511.05952)!
-* ❗ For an extra challenge **after passing this project**, try to train an agent from raw pixels! Check out `(Optional) Challenge: Learning from Pixels` in the classroom for more details.
+* ✅✅❗ For an extra challenge **after passing this project**, try to train an agent from raw pixels! Check out `(Optional) Challenge: Learning from Pixels` in the classroom for more details.
 * ❗ Write a blog post explaining the project and your implementation!
 
 ### (Optional) Challenge: Learning from Pixels
