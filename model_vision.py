@@ -11,7 +11,7 @@ class QNetwork_vision(nn.Module):
     """Actor (Policy) Model."""
     #DQN(screen_height, screen_width, n_actions)
     #def __init__(self, state_size, action_size, seed, fc1_units=64, fc2_units=64):
-    def __init__(self, h, w, outputs):
+    def __init__(self, c, h, w, outputs):
         """Initialize parameters and build model.
         Params
         ======
@@ -21,8 +21,6 @@ class QNetwork_vision(nn.Module):
         """
 
         super(QNetwork_vision, self).__init__()
-
-        c = 3 # channels
 
         self.online = nn.Sequential(
             nn.Conv2d(in_channels=c, out_channels=64, kernel_size=1, stride=1),
