@@ -85,7 +85,7 @@ Params
 #### Agent Auxiliary variables
 
 Besides the functions described above, the Agent also uses a set of Variables/Objects to help its functioning.<br>
-Out of which, important to mention **memory** which is an object of [ReplayBuffer](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py#L99) class
+Out of which, important to mention **memory** which is an object of [ReplayBuffer](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/agent.py#L161) class
 as well as **self.qnetwork_local** and **self.qnetwork_target** which is an object of [QNetwork](https://github.com/joao-d-oliveira/RL-SmartAgent-BananaGame/blob/main/model.py)
 
 ### Model NeuralNetwork
