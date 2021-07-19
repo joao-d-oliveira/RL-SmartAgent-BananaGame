@@ -52,10 +52,8 @@ class Agent_vision:
         self.PER = prioritized_experience_replay
 
         # Q-Network
-        #self.qnetwork_local = QNetwork_vision(state_size, action_size).to(device)
-        #self.qnetwork_target = QNetwork_vision(state_size, action_size).to(device)
-        self.qnetwork_local = QNetwork_vision(state_size[1], state_size[2], action_size).to(device)
-        self.qnetwork_target = QNetwork_vision(state_size[1], state_size[2], action_size).to(device)
+        self.qnetwork_local = QNetwork_vision(state_size[3], state_size[1], state_size[2], action_size).to(device)
+        self.qnetwork_target = QNetwork_vision(state_size[3], state_size[1], state_size[2], action_size).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
 
         # Replay memory
